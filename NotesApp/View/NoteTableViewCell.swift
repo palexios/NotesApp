@@ -5,14 +5,12 @@ final class NoteTableViewCell: UITableViewCell {
     private let containerView = UIView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let photoImageView = UIImageView()
     
     // MARK: - Init's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        configureContainerView()
-        configureTitleLabel()
-        configureDescriptionLabel()
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -21,13 +19,19 @@ final class NoteTableViewCell: UITableViewCell {
     func setupCell(with cell: NoteViewModel) {
         self.titleLabel.text = cell.title
         self.descriptionLabel.text = cell.description
+        self.photoImageView.image = UIImage.gray
+        
+        configureContainerView()
+        configurePhotoImageView()
+        configureTitleLabel()
+        configureDescriptionLabel()
     }
 }
 
 private extension NoteTableViewCell {
     // MARK: - configure containerView
     func configureContainerView() {
-        containerView.backgroundColor = UIColor.systemYellow
+        containerView.backgroundColor = UIColor.lightYellow
         containerView.layer.cornerRadius = 10
         
         configureContainerViewLayout()
@@ -46,7 +50,6 @@ private extension NoteTableViewCell {
     
     // MARK: - configure titleLabel
     func configureTitleLabel() {
-        titleLabel.textAlignment = .left
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.numberOfLines = 1
         
@@ -56,12 +59,20 @@ private extension NoteTableViewCell {
         self.containerView.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
-            titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
-            titleLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
+        if photoImageView.image == nil {
+            NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 4),
+                titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
+                titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
+                titleLabel.heightAnchor.constraint(equalToConstant: 24)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: self.photoImageView.bottomAnchor, constant: 4),
+                titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 8),
+                titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4)
+            ])
+        }
     }
     
     // MARK: - configure descriptionLabel
@@ -73,15 +84,36 @@ private extension NoteTableViewCell {
         configureDescriptionLabelLayout()
     }
     func configureDescriptionLabelLayout() {
-        self.containerView.addSubview(descriptionLabel)
-        
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
-            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.containerView.bottomAnchor)
-        ])
+        if photoImageView.image == nil {
+            self.containerView.addSubview(descriptionLabel)
+            descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor),
+                descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
+                descriptionLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
+                descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.containerView.bottomAnchor)
+            ])
+        }
+    }
+    
+    // MARK: - configure photoImageView
+    func configurePhotoImageView() {
+        self.photoImageView.clipsToBounds = true
+        self.photoImageView.layer.cornerRadius = self.containerView.layer.cornerRadius
+        configurePhotoImageViewLayout()
+    }
+    func configurePhotoImageViewLayout() {
+        self.containerView.addSubview(photoImageView)
+        self.photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        if let _ = self.photoImageView.image {
+            NSLayoutConstraint.activate([
+                photoImageView.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 4),
+                photoImageView.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
+                photoImageView.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
+                photoImageView.heightAnchor.constraint(equalToConstant: 64)
+            ])
+        }
     }
 }
 
