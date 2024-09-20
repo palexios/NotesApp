@@ -27,7 +27,7 @@ final class TableViewModel: TableViewModelProtocol {
     }
     private func setMockNotes() {
         let firstSection = SectionViewModel()
-        let firstMock = NoteModel(title: "Записаться к врачу", description: "На вечер. К терапевту", urlToImage: nil, date: Date())
+        let firstMock = NoteModel(title: "Записаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачу", description: "На вечер. К терапевту", urlToImage: nil, date: Date())
         let secondMock = NoteModel(title: "Пароль к телефону", description: "12345", urlToImage: nil, date: Date())
         firstSection.notes = [NoteViewModel(noteModel: firstMock), NoteViewModel(noteModel: secondMock)]
         self.sections = [firstSection]
