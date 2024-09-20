@@ -40,6 +40,7 @@ final class TableViewController: UITableViewController {
 private extension TableViewController {
     func configureTableView() {
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: "NoteTableViewCell")
+        self.tableView.rowHeight = 100
     }
     func configureNavigationBar() {
         self.title = "Notes"
