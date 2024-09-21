@@ -31,14 +31,22 @@ final class DetailViewController: UIViewController {
 private extension DetailViewController {
     // MARK: - navigationBar
     func configureNavigationBar() {
-        let saveButton = UIBarButtonItem(systemItem: .save)
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBarButtonAction))
         self.navigationItem.rightBarButtonItem = saveButton
+    }
+    @objc func saveBarButtonAction() {
+        let text = self.textView.text ?? ""
+        let (title, description) = self.viewModel.getTitleAndDescription(from: text)
+        self.viewModel.createNote(title: title, description: description, urlToImage: nil, date: Date())
     }
     
     // MARK: - toolBar
     func configureToolBar() {
-        let trashButton = UIBarButtonItem(systemItem: .trash)
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
         self.setToolbarItems([trashButton], animated: true)
+    }
+    @objc private func trashBarButtonAction() {
+        self.viewModel.deleteNote()
     }
     
     // MARK: - textView
