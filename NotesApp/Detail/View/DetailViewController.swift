@@ -6,6 +6,7 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
+    private let coreDataManager = CoreDataManager.shared
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

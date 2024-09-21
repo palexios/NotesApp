@@ -19,6 +19,9 @@
 		FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */; };
 		FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F82C9EAFED00EDE66B /* DetailViewController.swift */; };
 		FA5BE7FF2C9EB40200EDE66B /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7FE2C9EB40200EDE66B /* DetailViewModel.swift */; };
+		FA5BE8022C9EBBD100EDE66B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8012C9EBBD100EDE66B /* CoreDataManager.swift */; };
+		FA5BE8062C9EBC1300EDE66B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */; };
+		FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
 		FA5BE7F82C9EAFED00EDE66B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FA5BE7FE2C9EB40200EDE66B /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		FA5BE8012C9EBBD100EDE66B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		FA5BE8052C9EBC1300EDE66B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,7 @@
 				FA5BE7FB2C9EB3E400EDE66B /* Table */,
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
+				FA5BE8032C9EBC0000EDE66B /* CoreData */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -157,6 +164,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FA5BE8032C9EBC0000EDE66B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */,
+				FA5BE8012C9EBBD100EDE66B /* CoreDataManager.swift */,
+				FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,11 +247,14 @@
 				FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */,
 				FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */,
 				FA5BE7F32C9DE8CC00EDE66B /* NoteViewModel.swift in Sources */,
+				FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */,
 				FA5BE7FF2C9EB40200EDE66B /* DetailViewModel.swift in Sources */,
+				FA5BE8022C9EBBD100EDE66B /* CoreDataManager.swift in Sources */,
 				FA5BE7ED2C9DE39900EDE66B /* NoteModel.swift in Sources */,
 				FA5BE7E92C9DE2BC00EDE66B /* TableViewModel.swift in Sources */,
 				FA5BE7D12C9DDC5600EDE66B /* AppDelegate.swift in Sources */,
 				FA5BE7EB2C9DE35D00EDE66B /* SectionViewModel.swift in Sources */,
+				FA5BE8062C9EBC1300EDE66B /* DataModel.xcdatamodeld in Sources */,
 				FA5BE7E52C9DDCE600EDE66B /* TableViewController.swift in Sources */,
 				FA5BE7F12C9DE7D300EDE66B /* NoteTableViewCell.swift in Sources */,
 			);
@@ -447,6 +467,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA5BE8052C9EBC1300EDE66B /* DataModel.xcdatamodel */,
+			);
+			currentVersion = FA5BE8052C9EBC1300EDE66B /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = "/Users/alex/Documents/Projects GitHub/NotesApp/NotesApp/CoreData/DataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA5BE7C52C9DDC5600EDE66B /* Project object */;
 }

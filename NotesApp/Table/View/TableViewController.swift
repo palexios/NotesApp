@@ -2,7 +2,7 @@ import UIKit
 
 final class TableViewController: UITableViewController {
     // MARK: - Properties
-    let viewModel: TableViewModelProtocol
+    var viewModel: TableViewModelProtocol
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -50,6 +50,12 @@ private extension TableViewController {
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: "NoteTableViewCell")
         self.tableView.rowHeight = 112
         self.tableView.separatorStyle = .none
+    }
+    // MARK: - viewModel
+    func configureViewModel() {
+        self.viewModel.reloadTable = {
+            self.tableView.reloadData()
+        }
     }
     func configureNavigationBar() {
         self.title = "Notes"
