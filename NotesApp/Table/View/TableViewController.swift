@@ -36,6 +36,14 @@ final class TableViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: - Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = self.viewModel.getNote(indexPath: indexPath)
+        let viewModel = DetailViewModel(note: note)
+        let detailViewController = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 private extension TableViewController {
     func configureTableView() {
@@ -56,6 +64,9 @@ private extension TableViewController {
         self.toolbarItems = [flexibleSpace, addNoteBarButton]
     }
     @objc func addNoteBarButtonAction() {
-        //TODO: - handle addNote
+        let viewModel = DetailViewModel(note: nil)
+        let detailViewController = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+        
     }
 }

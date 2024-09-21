@@ -17,6 +17,8 @@
 		FA5BE7F12C9DE7D300EDE66B /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F02C9DE7D300EDE66B /* NoteTableViewCell.swift */; };
 		FA5BE7F32C9DE8CC00EDE66B /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F22C9DE8CC00EDE66B /* NoteViewModel.swift */; };
 		FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */; };
+		FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7F82C9EAFED00EDE66B /* DetailViewController.swift */; };
+		FA5BE7FF2C9EB40200EDE66B /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7FE2C9EB40200EDE66B /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		FA5BE7F02C9DE7D300EDE66B /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		FA5BE7F22C9DE8CC00EDE66B /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
+		FA5BE7F82C9EAFED00EDE66B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FA5BE7FE2C9EB40200EDE66B /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +69,10 @@
 			isa = PBXGroup;
 			children = (
 				FA5BE7D02C9DDC5600EDE66B /* AppDelegate.swift */,
-				FA5BE7EE2C9DE41A00EDE66B /* Model */,
-				FA5BE7E72C9DDEA000EDE66B /* View */,
-				FA5BE7EF2C9DE42500EDE66B /* ViewModel */,
+				FA5BE7FD2C9EB3F900EDE66B /* Detail */,
+				FA5BE7FB2C9EB3E400EDE66B /* Table */,
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
-				FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */,
+				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -107,6 +110,49 @@
 				FA5BE7E82C9DE2BC00EDE66B /* TableViewModel.swift */,
 				FA5BE7EA2C9DE35D00EDE66B /* SectionViewModel.swift */,
 				FA5BE7F22C9DE8CC00EDE66B /* NoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FA5BE7FA2C9EB3C100EDE66B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE7F42C9E03FA00EDE66B /* UIColor+Ex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA5BE7FB2C9EB3E400EDE66B /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE7EE2C9DE41A00EDE66B /* Model */,
+				FA5BE7E72C9DDEA000EDE66B /* View */,
+				FA5BE7EF2C9DE42500EDE66B /* ViewModel */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		FA5BE7FC2C9EB3F300EDE66B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE7F82C9EAFED00EDE66B /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA5BE7FD2C9EB3F900EDE66B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE7FC2C9EB3F300EDE66B /* View */,
+				FA5BE8002C9EB42200EDE66B /* ViewModel */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		FA5BE8002C9EB42200EDE66B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE7FE2C9EB40200EDE66B /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,8 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */,
 				FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */,
 				FA5BE7F32C9DE8CC00EDE66B /* NoteViewModel.swift in Sources */,
+				FA5BE7FF2C9EB40200EDE66B /* DetailViewModel.swift in Sources */,
 				FA5BE7ED2C9DE39900EDE66B /* NoteModel.swift in Sources */,
 				FA5BE7E92C9DE2BC00EDE66B /* TableViewModel.swift in Sources */,
 				FA5BE7D12C9DDC5600EDE66B /* AppDelegate.swift in Sources */,
