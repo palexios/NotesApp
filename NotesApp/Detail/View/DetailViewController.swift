@@ -13,6 +13,9 @@ final class DetailViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.largeTitleDisplayMode = .never
         configureTextView()
+        configureNavigationBar()
+        configureToolBar()
+        configureGestureRecognizer()
     }
     
     // MARK: - Init
@@ -25,6 +28,18 @@ final class DetailViewController: UIViewController {
     }
 }
 private extension DetailViewController {
+    // MARK: - navigationBar
+    func configureNavigationBar() {
+        let saveButton = UIBarButtonItem(systemItem: .save)
+        self.navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    // MARK: - toolBar
+    func configureToolBar() {
+        let trashButton = UIBarButtonItem(systemItem: .trash)
+        self.setToolbarItems([trashButton], animated: true)
+    }
+    
     // MARK: - textView
     func configureTextView() {
         self.textView.font = UIFont.systemFont(ofSize: 28)
@@ -42,7 +57,16 @@ private extension DetailViewController {
             textView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            textView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            textView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor, constant: -12)
         ])
+    }
+    
+    // MARK: - gestureRecognizer
+    func configureGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerAction))
+        self.view.addGestureRecognizer(recognizer)
+    }
+    @objc func gestureRecognizerAction() {
+        self.textView.resignFirstResponder()
     }
 }
