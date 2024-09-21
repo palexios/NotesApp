@@ -8,6 +8,7 @@ final class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureViewModel()
         configureTableView()
         configureNavigationBar()
         configureToolBar()
@@ -53,10 +54,11 @@ private extension TableViewController {
     }
     // MARK: - viewModel
     func configureViewModel() {
-        self.viewModel.reloadTable = {
-            self.tableView.reloadData()
+        self.viewModel.reloadTable = {[weak self] in
+            self?.tableView.reloadData()
         }
     }
+    
     func configureNavigationBar() {
         self.title = "Notes"
         self.navigationController?.navigationBar.prefersLargeTitles = true
