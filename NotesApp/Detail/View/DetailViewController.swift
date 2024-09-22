@@ -37,7 +37,7 @@ private extension DetailViewController {
     @objc func saveBarButtonAction() {
         let text = self.textView.text ?? ""
         let (title, description) = self.viewModel.getTitleAndDescription(from: text)
-        self.viewModel.createNote(title: title, description: description, urlToImage: nil, date: Date())
+        self.viewModel.saveNote(title: title, description: description, urlToImage: nil, date: Date())
     }
     
     // MARK: - toolBar

@@ -3,7 +3,7 @@ import Foundation
 protocol DetailViewModelProtocol {
     func getTitle() -> String?
     func getDescription() -> String?
-    func createNote(title: String?, description: String?, urlToImage: String?, date: Date)
+    func saveNote(title: String?, description: String?, urlToImage: String?, date: Date)
     func deleteNote()
     func getTitleAndDescription(from text: String) -> (String?, String?)
 }
@@ -24,8 +24,12 @@ final class DetailViewModel: DetailViewModelProtocol {
         return self.note?.description
     }
     // MARK: - Methods
-    func createNote(title: String?, description: String?, urlToImage: String?, date: Date) {
-        self.coreDataManager.createNote(title: title, description: description, urlToImage: urlToImage, date: date)
+    func saveNote(title: String?, description: String?, urlToImage: String?, date: Date) {
+        if let note = self.note {
+            self.coreDataManager.updateNote(note, title: title, description: description, urlToImage: urlToImage, date: date)
+        } else {
+            self.coreDataManager.createNote(title: title, description: description, urlToImage: urlToImage, date: date)
+        }
     }
     func deleteNote() {
         guard let note = self.note else { return }

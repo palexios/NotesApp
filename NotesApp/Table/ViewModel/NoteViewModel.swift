@@ -1,10 +1,10 @@
 import Foundation
 
 final class NoteViewModel {
-    let title: String?
-    let description: String?
-    let urlToImage: String?
-    let date: Date
+    var title: String?
+    var description: String?
+    var urlToImage: String?
+    var date: Date
     
     init(noteModel: NoteModel) {
         self.title = noteModel.title

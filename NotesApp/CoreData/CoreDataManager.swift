@@ -41,8 +41,14 @@ public final class CoreDataManager: NSObject {
         guard let notes = try? context.fetch(request) else { return []}
         return notes
     }
-    func updateNote() {
-        
+    func updateNote(_ note: NoteViewModel, title: String?, description: String?, urlToImage: String?, date: Date) {
+        guard let noteEntity = self.fetchNote(note) else { return }
+        noteEntity.noteTitle = title
+        noteEntity.noteDescription = description
+        noteEntity.noteUrlToImage = urlToImage
+        noteEntity.noteDate = date
+        appDelegate.saveContext()
+        postNotification()
     }
     func deleteNote(note: NoteViewModel) {
         guard let note = self.fetchNote(note) else { return }
