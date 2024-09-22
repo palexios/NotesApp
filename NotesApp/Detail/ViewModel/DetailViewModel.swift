@@ -26,7 +26,8 @@ final class DetailViewModel: DetailViewModelProtocol {
     // MARK: - Methods
     func saveNote(title: String?, description: String?, urlToImage: String?, date: Date) {
         if let note = self.note {
-            self.coreDataManager.updateNote(note, title: title, description: description, urlToImage: urlToImage, date: date)
+            let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: urlToImage, date: date))
+            self.coreDataManager.updateNote(note, newNote: newNote)
         } else {
             self.coreDataManager.createNote(title: title, description: description, urlToImage: urlToImage, date: date)
         }
