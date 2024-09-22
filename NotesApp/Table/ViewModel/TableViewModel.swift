@@ -67,20 +67,19 @@ final class TableViewModel: TableViewModelProtocol {
     }
     func groupByDay(with notes: [NoteViewModel]) -> [SectionViewModel] {
         let calendar = Calendar.current
-        
+        let notesCopy = notes.map { NoteViewModel(noteModel: NoteModel(title: $0.title, description: $0.description, urlToImage: $0.urlToImage, date: $0.date))}
         //remove time
-        let notesCopy = notes
-        notesCopy.forEach({ note in
-            note.date = calendar.startOfDay(for: note.date)
+        notesCopy.forEach({ noteCopy in
+            noteCopy.date = calendar.startOfDay(for: noteCopy.date)
         })
         
         var groupedObjects: [Date: [NoteViewModel]] = [:]
         
-        for i in notesCopy {
-            if groupedObjects[i.date] != nil {
-                groupedObjects[i.date]?.append(i)
+        for (index,note) in notesCopy.enumerated() {
+            if groupedObjects[note.date] != nil {
+                groupedObjects[note.date]?.append(notes[index])
             } else {
-                groupedObjects[i.date] = [i]
+                groupedObjects[note.date] = [notes[index]]
             }
         }
         let dateKeys = groupedObjects.keys
