@@ -82,7 +82,7 @@ final class TableViewModel: TableViewModelProtocol {
                 groupedObjects[note.date] = [notes[index]]
             }
         }
-        let dateKeys = groupedObjects.keys
+        let dateKeys = Array(groupedObjects.keys).sorted(by: {$0 > $1})
         var sections : [SectionViewModel] = []
         for i in dateKeys {
             let section = SectionViewModel()
@@ -90,6 +90,10 @@ final class TableViewModel: TableViewModelProtocol {
             let notes = groupedObjects[i] ?? []
             section.notes = notes
             sections.append(section)
+        }
+        //sort
+        for i in sections {
+            i.notes.sort(by: {$0.date > $1.date})
         }
         return sections
     }
