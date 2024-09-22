@@ -5,6 +5,7 @@ protocol DetailViewModelProtocol {
     func getDescription() -> String?
     func saveNote(title: String?, description: String?, urlToImage: String?, date: Date)
     func deleteNote()
+    func getTitleAndDescription() -> (String?, String?) 
     func getTitleAndDescription(from text: String) -> (String?, String?)
 }
 final class DetailViewModel: DetailViewModelProtocol {
@@ -35,6 +36,15 @@ final class DetailViewModel: DetailViewModelProtocol {
     func deleteNote() {
         guard let note = self.note else { return }
         self.coreDataManager.deleteNote(note: note)
+    }
+    func getTitleAndDescription() -> (String?, String?) {
+        if let note = self.note {
+            let title = note.title
+            let description = note.description
+            return (title, description)
+        } else {
+            return (nil, nil)
+        }
     }
     func getTitleAndDescription(from text: String) -> (String?, String?) {
         let tulp: (String?, String?)
