@@ -5,6 +5,7 @@ protocol TableViewModelProtocol {
     func getNumberOfNotes(section: Int) -> Int
     func getNumberOfSections() -> Int
     func getNote(indexPath: IndexPath) -> NoteViewModel
+    func getSectionTitle(section: Int) -> String
     var reloadTable: (()-> Void)? { get set }
 }
 final class TableViewModel: TableViewModelProtocol {
@@ -35,11 +36,15 @@ final class TableViewModel: TableViewModelProtocol {
     func getNote(indexPath: IndexPath) -> NoteViewModel {
         return self.sections[indexPath.section].notes[indexPath.item]
     }
+    func getSectionTitle(section: Int) -> String {
+        return self.sections[section].title ?? ""
+    }
     @objc private func loadNotes() {
-        let firstSection = SectionViewModel()
+        //let firstSection = SectionViewModel()
         let notes = self.coreDataManager.fetchNotes().map {NoteViewModel(noteCoreDataModel: $0)}
-        firstSection.notes = notes
-        self.sections = [firstSection]
+        self.sections = self.groupByDay(with: notes)
+        //firstSection.notes = notes
+        //self.sections = [firstSection]
     }
 
     private func setMockNotes() {
@@ -59,5 +64,34 @@ final class TableViewModel: TableViewModelProtocol {
     }
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadNotes), name: NSNotification.Name("FetchNotes"), object: nil)
+    }
+    func groupByDay(with notes: [NoteViewModel]) -> [SectionViewModel] {
+        let calendar = Calendar.current
+        
+        //remove time
+        let notesCopy = notes
+        notesCopy.forEach({ note in
+            note.date = calendar.startOfDay(for: note.date)
+        })
+        
+        var groupedObjects: [Date: [NoteViewModel]] = [:]
+        
+        for i in notesCopy {
+            if groupedObjects[i.date] != nil {
+                groupedObjects[i.date]?.append(i)
+            } else {
+                groupedObjects[i.date] = [i]
+            }
+        }
+        let dateKeys = groupedObjects.keys
+        var sections : [SectionViewModel] = []
+        for i in dateKeys {
+            let section = SectionViewModel()
+            section.title = "\(i as Date)"
+            let notes = groupedObjects[i] ?? []
+            section.notes = notes
+            sections.append(section)
+        }
+        return sections
     }
 }

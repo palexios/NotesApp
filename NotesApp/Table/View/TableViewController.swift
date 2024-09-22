@@ -37,6 +37,9 @@ final class TableViewController: UITableViewController {
         
         return cell
     }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.viewModel.getSectionTitle(section: section)
+    }
     
     // MARK: - Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
