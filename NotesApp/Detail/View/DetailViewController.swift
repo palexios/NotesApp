@@ -3,6 +3,7 @@ import UIKit
 final class DetailViewController: UIViewController {
     // MARK: - GUI
     private let textView = UITextView()
+    private var saveBarButton: UIBarButtonItem!
     
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
@@ -27,12 +28,28 @@ final class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    // MARK: - Methods
+    private func isEqualText(with text: String) -> Bool {
+        let oldTulp = self.viewModel.getTitleAndDescription()
+        let newTulp = self.viewModel.getTitleAndDescription(from: text)
+        
+        return oldTulp == newTulp
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension DetailViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.saveBarButton.isHidden = self.isEqualText(with: textView.text)
+    }
 }
 private extension DetailViewController {
     // MARK: - navigationBar
     func configureNavigationBar() {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBarButtonAction))
-        self.navigationItem.rightBarButtonItem = saveButton
+        saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBarButtonAction))
+        self.navigationItem.rightBarButtonItem = saveBarButton
+        self.saveBarButton.isHidden = true
     }
     @objc func saveBarButtonAction() {
         let text = self.textView.text ?? ""
@@ -51,6 +68,7 @@ private extension DetailViewController {
     
     // MARK: - textView
     func configureTextView() {
+        self.textView.delegate = self
         self.textView.font = UIFont.systemFont(ofSize: 28)
         configureTextViewLayout()
         guard let title = self.viewModel.getTitle() else { return}
