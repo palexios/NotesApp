@@ -70,10 +70,15 @@ private extension DetailViewController {
     func configureTextView() {
         self.textView.delegate = self
         self.textView.font = UIFont.systemFont(ofSize: 28)
+        
         configureTextViewLayout()
-        guard let title = self.viewModel.getTitle() else { return}
+        
+        //set title and description
+        
+        let (title, description) = self.viewModel.getTitleAndDescription()
+        guard let title = title else { return}
         self.textView.text = title
-        guard let description = self.viewModel.getDescription() else { return }
+        guard let description = description else { return }
         self.textView.text += "\n\(description)"
     }
     func configureTextViewLayout() {
