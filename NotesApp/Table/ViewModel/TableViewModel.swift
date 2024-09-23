@@ -85,7 +85,9 @@ final class TableViewModel: TableViewModelProtocol {
         var sections : [SectionViewModel] = []
         for i in dateKeys {
             let section = SectionViewModel()
-            section.title = "\(i as Date)"
+            let date = i as Date
+            let dateString = self.convertDateToString(with: date)
+            section.title = dateString
             let notes = groupedObjects[i] ?? []
             section.notes = notes
             sections.append(section)
@@ -95,5 +97,10 @@ final class TableViewModel: TableViewModelProtocol {
             i.notes.sort(by: {$0.date > $1.date})
         }
         return sections
+    }
+    private func convertDateToString(with date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        return dateFormatter.string(from: date)
     }
 }
