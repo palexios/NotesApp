@@ -6,6 +6,7 @@ protocol DetailViewModelProtocol {
     func deleteNote()
     func getTitleAndDescription() -> (String?, String?) 
     func getTitleAndDescription(from text: String) -> (String?, String?)
+    func isEqualText(with text: String) -> Bool
 }
 final class DetailViewModel: DetailViewModelProtocol {
     // MARK: - Properties
@@ -55,8 +56,12 @@ final class DetailViewModel: DetailViewModelProtocol {
         }
         tulp.0 = title.isEmpty ? nil : title
         
-        
-        
         return tulp
+    }
+    func isEqualText(with text: String) -> Bool {
+        let oldTulp = self.getTitleAndDescription()
+        let newTulp = self.getTitleAndDescription(from: text)
+        
+        return oldTulp == newTulp
     }
 }

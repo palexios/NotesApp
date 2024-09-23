@@ -20,7 +20,6 @@ final class TableViewModel: TableViewModelProtocol {
     
     // MARK: - Init
     init() {
-        #warning("mock")
         //self.setMockNotes()
         self.registerObserver()
         self.loadNotes()

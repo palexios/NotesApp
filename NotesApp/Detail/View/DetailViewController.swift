@@ -28,20 +28,12 @@ final class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
-    // MARK: - Methods
-    private func isEqualText(with text: String) -> Bool {
-        let oldTulp = self.viewModel.getTitleAndDescription()
-        let newTulp = self.viewModel.getTitleAndDescription(from: text)
-        
-        return oldTulp == newTulp
-    }
 }
 
 // MARK: - UITextViewDelegate
 extension DetailViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        self.saveBarButton.isHidden = self.isEqualText(with: textView.text)
+        self.saveBarButton.isHidden = self.viewModel.isEqualText(with: textView.text)
     }
 }
 private extension DetailViewController {

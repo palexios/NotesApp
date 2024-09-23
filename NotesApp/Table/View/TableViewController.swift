@@ -50,6 +50,7 @@ final class TableViewController: UITableViewController {
     }
 }
 private extension TableViewController {
+    // MARK: - tableView
     func configureTableView() {
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: "NoteTableViewCell")
         self.tableView.rowHeight = 112
@@ -61,12 +62,13 @@ private extension TableViewController {
             self?.tableView.reloadData()
         }
     }
-    
+    // MARK: - navigationBar
     func configureNavigationBar() {
         self.title = "Notes"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.isNavigationBarHidden = false
     }
+    // MARK: - toolBar
     func configureToolBar() {
         self.navigationController?.isToolbarHidden = false
         
