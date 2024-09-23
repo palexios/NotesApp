@@ -51,10 +51,14 @@ private extension DetailViewController {
     
     // MARK: - toolBar
     func configureToolBar() {
+        let addPhotoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPhotoBarButtonAction))
         if self.viewModel.isThereNoteModel {
             let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
             self.setToolbarItems([trashButton], animated: true)
         }
+    }
+    @objc private func addPhotoBarButtonAction() {
+        
     }
     @objc private func trashBarButtonAction() {
         self.viewModel.deleteNote()
