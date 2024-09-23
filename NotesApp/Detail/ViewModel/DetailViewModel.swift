@@ -1,6 +1,7 @@
 import Foundation
 
 protocol DetailViewModelProtocol {
+    var isThereNoteModel: Bool { get }
     func saveNote(title: String?, description: String?, urlToImage: String?, date: Date)
     func deleteNote()
     func getTitleAndDescription() -> (String?, String?) 
@@ -8,6 +9,9 @@ protocol DetailViewModelProtocol {
 }
 final class DetailViewModel: DetailViewModelProtocol {
     // MARK: - Properties
+    var isThereNoteModel: Bool {
+        return note != nil
+    }
     private let note: NoteViewModel?
     private let coreDataManager = CoreDataManager.shared
     
