@@ -39,28 +39,10 @@ final class TableViewModel: TableViewModelProtocol {
         return self.sections[section].title ?? ""
     }
     @objc private func loadNotes() {
-        //let firstSection = SectionViewModel()
         let notes = self.coreDataManager.fetchNotes().map {NoteViewModel(noteCoreDataModel: $0)}
         self.sections = self.groupByDay(with: notes)
-        //firstSection.notes = notes
-        //self.sections = [firstSection]
     }
 
-    private func setMockNotes() {
-//        let firstSection = SectionViewModel()
-//        let firstMock = NoteModel(title: "Записаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачу", description: "На вечер. К терапевту", urlToImage: nil, date: Date())
-//        let secondMock = NoteModel(title: "Пароль к телефону", description: "12345", urlToImage: nil, date: Date())
-//        firstSection.notes = [NoteViewModel(noteModel: firstMock), NoteViewModel(noteModel: secondMock)]
-//        self.sections = [firstSection]
-        
-        let firstSection = SectionViewModel()
-//        self.coreDataManager.createNote(title: "Записаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачуЗаписаться к врачу", description: "На вечер. К терапевту", urlToImage: nil, date: Date())
-//        self.coreDataManager.createNote(title: "Пароль к телефону", description: "12345", urlToImage: nil, date: Date())
-        let notes = self.coreDataManager.fetchNotes().map {NoteViewModel(noteCoreDataModel: $0)}
-        firstSection.notes = notes
-        self.sections = [firstSection]
-        
-    }
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadNotes), name: NSNotification.Name("FetchNotes"), object: nil)
     }
