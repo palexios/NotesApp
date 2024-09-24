@@ -54,11 +54,15 @@ extension DetailViewController: UITextViewDelegate {
 // MARK: - PHPickerViewControllerDelegate
 extension DetailViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        self.dismiss(animated: true)
         if let result = results.first {
             result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 if let image = image as? UIImage {
                     DispatchQueue.main.async {
                         // MARK: - TODO
+                        self.photoImageView.image = image
+                        self.updatePhotoImageViewLayout()
+                        
                     }
                 }
             }
