@@ -6,6 +6,7 @@ final class DetailViewController: UIViewController {
     var photoImageViewHeightConstraint: NSLayoutConstraint!
     private let photoImageView = UIImageView()
     private let textView = UITextView()
+    private var suggestedName: String?
     private var saveBarButton: UIBarButtonItem!
     private lazy var phpickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
