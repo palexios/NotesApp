@@ -3,6 +3,8 @@ import PhotosUI
 
 final class DetailViewController: UIViewController {
     // MARK: - GUI
+    var photoImageViewHeightConstraint: NSLayoutConstraint!
+    private let photoImageView = UIImageView()
     private let textView = UITextView()
     private var saveBarButton: UIBarButtonItem!
     private lazy var phpickerViewController: PHPickerViewController = {
@@ -26,6 +28,7 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.largeTitleDisplayMode = .never
+        configurePhotoImageView()
         configureTextView()
         configureNavigationBar()
         configureToolBar()
@@ -90,6 +93,33 @@ private extension DetailViewController {
     @objc private func trashBarButtonAction() {
         self.viewModel.deleteNote()
     }
+    // MARK: - photoImageView
+    func configurePhotoImageView() {
+        configurePhotoImageViewLayout()
+    }
+    func configurePhotoImageViewLayout() {
+        self.view.addSubview(photoImageView)
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            photoImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            photoImageView.heightAnchor.constraint(equalToConstant: photoImageView.image == nil ? 0 : 120)
+        ])
+    }
+    func updatePhotoImageViewLayout() {
+        if let heightConstraint = self.photoImageView.constraints.first(where: {$0.firstAttribute == .height}) {
+            heightConstraint.constant = photoImageView.image == nil ? 0 : 120
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    // MARK: - phpickerViewController
+    func showPHPickerViewController() {
+        self.present(phpickerViewController, animated: true)
+    }
     
     // MARK: - textView
     func configureTextView() {
@@ -111,7 +141,7 @@ private extension DetailViewController {
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            textView.topAnchor.constraint(equalTo: self.photoImageView.bottomAnchor),
             textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
             textView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor, constant: -12)
