@@ -15,6 +15,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     }
     private let note: NoteViewModel?
     private let coreDataManager = CoreDataManager.shared
+    private let fileManagerPersistent = FileManagerPersistent.shared
     
     // MARK: - Init
     init(note: NoteViewModel?) {
