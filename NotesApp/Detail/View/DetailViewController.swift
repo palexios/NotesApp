@@ -1,9 +1,21 @@
 import UIKit
+import PhotosUI
 
 final class DetailViewController: UIViewController {
     // MARK: - GUI
     private let textView = UITextView()
     private var saveBarButton: UIBarButtonItem!
+    private lazy var phpickerViewController: PHPickerViewController = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        
+        let phpickerViewController = PHPickerViewController(configuration: configuration)
+        phpickerViewController.delegate = self
+        
+        return phpickerViewController
+        
+    }()
     
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
@@ -36,6 +48,21 @@ extension DetailViewController: UITextViewDelegate {
         self.saveBarButton.isHidden = self.viewModel.isEqualText(with: textView.text)
     }
 }
+// MARK: - PHPickerViewControllerDelegate
+extension DetailViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if let result = results.first {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                if let image = image as? UIImage {
+                    DispatchQueue.main.async {
+                        // MARK: - TODO
+                    }
+                }
+            }
+        }
+        
+    }
+}
 private extension DetailViewController {
     // MARK: - navigationBar
     func configureNavigationBar() {
@@ -58,7 +85,7 @@ private extension DetailViewController {
         }
     }
     @objc private func addPhotoBarButtonAction() {
-        
+        self.showPHPickerViewController()
     }
     @objc private func trashBarButtonAction() {
         self.viewModel.deleteNote()
