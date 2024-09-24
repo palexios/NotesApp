@@ -82,9 +82,11 @@ private extension DetailViewController {
     // MARK: - toolBar
     func configureToolBar() {
         let addPhotoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPhotoBarButtonAction))
+        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+        self.setToolbarItems([flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
         if self.viewModel.isThereNoteModel {
             let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
-            self.setToolbarItems([trashButton], animated: true)
+            self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
         }
     }
     @objc private func addPhotoBarButtonAction() {
