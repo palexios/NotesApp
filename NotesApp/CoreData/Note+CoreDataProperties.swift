@@ -9,7 +9,7 @@ public final class Note: NSManagedObject {
 extension Note {
     @NSManaged public var noteTitle: String?
     @NSManaged public var noteDescription: String?
-    @NSManaged public var noteUrlToImage: String?
+    @NSManaged public var noteUrlToImage: URL?
     @NSManaged public var noteDate: Date
 }
 

@@ -15,7 +15,7 @@ public final class CoreDataManager: NSObject {
     private override init() {}
     
     // MARK: - CRUD
-    func createNote(title: String?, description: String?, urlToImage: String?, date: Date) {
+    func createNote(title: String?, description: String?, urlToImage: URL?, date: Date) {
         let note = Note(context: context)
         note.noteTitle = title
         note.noteDescription = description
