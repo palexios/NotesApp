@@ -56,14 +56,17 @@ extension DetailViewController: UITextViewDelegate {
 extension DetailViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         self.dismiss(animated: true)
-        if let result = results.first {
+        if let result = results.first, let name = result.itemProvider.suggestedName {
             result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 if let image = image as? UIImage {
                     DispatchQueue.main.async {
                         // MARK: - TODO
                         self.photoImageView.image = image
+                        self.suggestedName = name
                         self.updatePhotoImageViewLayout()
-                        
+                        if let oldName = self.viewModel.getSuggestedName() {
+                            self.saveBarButton.isHidden = oldName == name
+                        }
                     }
                 }
             }

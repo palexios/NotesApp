@@ -6,13 +6,19 @@ protocol DetailViewModelProtocol {
     func deleteNote()
     func getTitleAndDescription() -> (String?, String?) 
     func getTitleAndDescription(from text: String) -> (String?, String?)
+    func setURLtoImage(_ url: URL?)
     func isEqualText(with text: String) -> Bool
+    func getImageData(from url: URL?) -> Data?
+    func getUrlToImage() -> URL?
+    func setSuggestedName(_ string: String?)
+    func getSuggestedName() -> String?
 }
 final class DetailViewModel: DetailViewModelProtocol {
     // MARK: - Properties
     var isThereNoteModel: Bool {
         return note != nil
     }
+    private var suggestedName: String?
     private let note: NoteViewModel?
     private let coreDataManager = CoreDataManager.shared
     private let fileManagerPersistent = FileManagerPersistent.shared
@@ -64,5 +70,26 @@ final class DetailViewModel: DetailViewModelProtocol {
         let newTulp = self.getTitleAndDescription(from: text)
         
         return oldTulp == newTulp
+    }
+    func setURLtoImage(_ url: URL?) {
+        guard let url = url else { return }
+        self.note?.urlToImage = url
+    }
+    func getImageData(from url: URL?) -> Data? {
+        guard let url = url else { return nil}
+        return self.fileManagerPersistent.read(from: url)
+    }
+    func getUrlToImage() -> URL? {
+        return self.note?.urlToImage
+    }
+    func setSuggestedName(_ string: String?) {
+        self.suggestedName = string
+    }
+    func getSuggestedName() -> String? {
+        guard let url = self.note?.urlToImage else { return nil }
+        let path = url.absoluteString
+        guard let range = path.range(of: "/", options: .backwards) else { return nil }
+        let result = String(path[range.upperBound...])
+        return result
     }
 }
