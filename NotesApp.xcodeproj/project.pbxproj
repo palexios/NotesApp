@@ -22,6 +22,7 @@
 		FA5BE8022C9EBBD100EDE66B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8012C9EBBD100EDE66B /* CoreDataManager.swift */; };
 		FA5BE8062C9EBC1300EDE66B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */; };
 		FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */; };
+		FA866E312CA2B18F004DC78E /* FileManagerPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FA5BE8012C9EBBD100EDE66B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FA5BE8052C9EBC1300EDE66B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerPersistent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
 				FA5BE8032C9EBC0000EDE66B /* CoreData */,
+				FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */,
 				FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */,
 				FA5BE7F32C9DE8CC00EDE66B /* NoteViewModel.swift in Sources */,
+				FA866E312CA2B18F004DC78E /* FileManagerPersistent.swift in Sources */,
 				FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */,
 				FA5BE7FF2C9EB40200EDE66B /* DetailViewModel.swift in Sources */,
 				FA5BE8022C9EBBD100EDE66B /* CoreDataManager.swift in Sources */,
