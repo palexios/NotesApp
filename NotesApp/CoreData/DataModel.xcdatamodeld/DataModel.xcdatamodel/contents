@@ -4,6 +4,6 @@
         <attribute name="noteDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="noteDescription" optional="YES" attributeType="String"/>
         <attribute name="noteTitle" optional="YES" attributeType="String"/>
-        <attribute name="noteUrlToImage" optional="YES" attributeType="String"/>
+        <attribute name="noteUrlToImage" optional="YES" attributeType="URI"/>
     </entity>
 </model>
