@@ -84,7 +84,10 @@ private extension DetailViewController {
     @objc func saveBarButtonAction() {
         let text = self.textView.text ?? ""
         let (title, description) = self.viewModel.getTitleAndDescription(from: text)
-        self.viewModel.saveNote(title: title, description: description, urlToImage: nil, date: Date())
+        let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: nil, date: Date()))
+        let imageData = self.photoImageView.image?.jpegData(compressionQuality: 1)
+        self.viewModel.setSuggestedName(suggestedName)
+        self.viewModel.saveNote(newNote: newNote, data: imageData, dataName: self.suggestedName)
     }
     
     // MARK: - toolBar
@@ -105,6 +108,11 @@ private extension DetailViewController {
     }
     // MARK: - photoImageView
     func configurePhotoImageView() {
+        if let url = self.viewModel.getUrlToImage() {
+            if let data = self.viewModel.getImageData(from: url) {
+                self.photoImageView.image = UIImage(data: data)
+            }
+        }
         configurePhotoImageViewLayout()
     }
     func configurePhotoImageViewLayout() {

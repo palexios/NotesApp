@@ -2,7 +2,7 @@ import Foundation
 
 protocol DetailViewModelProtocol {
     var isThereNoteModel: Bool { get }
-    func saveNote(title: String?, description: String?, urlToImage: String?, date: Date)
+    func saveNote(newNote: NoteViewModel, data: Data?, dataName: String?)
     func deleteNote()
     func getTitleAndDescription() -> (String?, String?) 
     func getTitleAndDescription(from text: String) -> (String?, String?)
@@ -28,12 +28,15 @@ final class DetailViewModel: DetailViewModelProtocol {
         self.note = note
     }
     // MARK: - Methods
-    func saveNote(title: String?, description: String?, urlToImage: String?, date: Date) {
+    func saveNote(newNote: NoteViewModel, data: Data?, dataName: String?) {
+        if let urlToImage = self.fileManagerPersistent.save(data, name: dataName) {
+            newNote.urlToImage = urlToImage
+        }
         if let note = self.note {
-            let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: urlToImage, date: date))
-            self.coreDataManager.updateNote(note, newNote: newNote)
+            let newUpdatedNote = NoteViewModel(noteModel: NoteModel(title: newNote.title, description: newNote.description, urlToImage: newNote.urlToImage, date: newNote.date))
+            self.coreDataManager.updateNote(note, newNote: newUpdatedNote)
         } else {
-            self.coreDataManager.createNote(title: title, description: description, urlToImage: urlToImage, date: date)
+            self.coreDataManager.createNote(title: newNote.title, description: newNote.description, urlToImage: newNote.urlToImage, date: newNote.date)
         }
     }
     func deleteNote() {
