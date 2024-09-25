@@ -33,7 +33,15 @@ final class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
         let note = self.viewModel.getNote(indexPath: indexPath)
-        cell.setupCell(with: note)
+        // get image
+        let image: UIImage!
+        if let imageData = self.viewModel.getImage(from: note.urlToImage) {
+            image = UIImage(data: imageData)
+        } else {
+            image = nil
+        }
+        cell.setupCell(with: note, image: image)
+        
         
         return cell
     }
