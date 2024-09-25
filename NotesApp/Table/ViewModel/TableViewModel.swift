@@ -6,6 +6,7 @@ protocol TableViewModelProtocol {
     func getNumberOfSections() -> Int
     func getNote(indexPath: IndexPath) -> NoteViewModel
     func getSectionTitle(section: Int) -> String
+    func getImage(from url: URL?) -> Data?
     var reloadTable: (()-> Void)? { get set }
 }
 final class TableViewModel: TableViewModelProtocol {
@@ -17,6 +18,7 @@ final class TableViewModel: TableViewModelProtocol {
         }
     }
     private let coreDataManager = CoreDataManager.shared
+    private let fileManagerPersistent = FileManagerPersistent.shared
     
     // MARK: - Init
     init() {
@@ -79,6 +81,10 @@ final class TableViewModel: TableViewModelProtocol {
             i.notes.sort(by: {$0.date > $1.date})
         }
         return sections
+    }
+    func getImage(from url: URL?) -> Data? {
+        guard let url = url else { return nil }
+        return self.fileManagerPersistent.read(from: url)
     }
     private func convertDateToString(with date: Date) -> String {
         let dateFormatter = DateFormatter()
