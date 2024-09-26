@@ -26,7 +26,6 @@
             configureDescriptionLabel()
         }
     }
-}
 
 private extension NoteTableViewCell {
     // MARK: - configure containerView
@@ -86,46 +85,27 @@ private extension NoteTableViewCell {
             titleLabel.heightAnchor.constraint(equalToConstant: self.titleLabel.font.lineHeight)
         ])
     }
-    
     // MARK: - configure descriptionLabel
     func configureDescriptionLabel() {
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = .systemFont(ofSize: 12)
-        descriptionLabel.textColor = UIColor.black
-        
+        descriptionLabel.font = UIFont.systemFont(ofSize: 11)
         configureDescriptionLabelLayout()
     }
     func configureDescriptionLabelLayout() {
-        if photoImageView.image == nil {
+        if self.photoImageView.image == nil {
+            let height = self.contentView.frame.height
             self.containerView.addSubview(descriptionLabel)
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-            
             NSLayoutConstraint.activate([
                 descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor),
-                descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
-                descriptionLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
-                descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.containerView.bottomAnchor)
+                descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+                descriptionLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+                descriptionLabel.heightAnchor.constraint(equalTo: self.containerView.heightAnchor, multiplier: 1, constant: -self.titleLabel.font.lineHeight),
+                descriptionLabel.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor)
             ])
+        } else {
+            descriptionLabel.removeFromSuperview()
         }
-    }
-    
-    // MARK: - configure photoImageView
-    func configurePhotoImageView() {
-        self.photoImageView.clipsToBounds = true
-        self.photoImageView.layer.cornerRadius = self.containerView.layer.cornerRadius
-        configurePhotoImageViewLayout()
-    }
-    func configurePhotoImageViewLayout() {
-        self.containerView.addSubview(photoImageView)
-        self.photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        if let _ = self.photoImageView.image {
-            NSLayoutConstraint.activate([
-                photoImageView.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 4),
-                photoImageView.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
-                photoImageView.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
-                photoImageView.heightAnchor.constraint(equalToConstant: 64)
-            ])
-        }
+        
     }
 }
-
