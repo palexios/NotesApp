@@ -1,30 +1,30 @@
-import UIKit
+    import UIKit
 
-final class NoteTableViewCell: UITableViewCell {
-    // MARK: - GUI
-    private let containerView = UIView()
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
-    private let photoImageView = UIImageView()
-    
-    // MARK: - Init's
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    final class NoteTableViewCell: UITableViewCell {
+        // MARK: - GUI
+        private let containerView = UIView()
+        private let titleLabel = UILabel()
+        private let photoImageView = UIImageView()
+        private let descriptionLabel = UILabel()
         
-    }
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    // MARK: - Methods
-    func setupCell(with cell: NoteViewModel) {
-        self.titleLabel.text = cell.title
-        self.descriptionLabel.text = cell.description
-        self.photoImageView.image = UIImage.gray
-        
-        configureContainerView()
-        configurePhotoImageView()
-        configureTitleLabel()
-        configureDescriptionLabel()
+        // MARK: - Init's
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+        }
+        required init?(coder: NSCoder) {
+            fatalError()
+        }
+        // MARK: - Methods
+        func setupCell(with cell: NoteViewModel, image: UIImage?) {
+            self.photoImageView.image = image
+            self.titleLabel.text = cell.title
+            self.descriptionLabel.text = cell.description
+            
+            configureContainerView()
+            configurePhotoImageView()
+            configureTitleLabel()
+            configureDescriptionLabel()
+        }
     }
 }
 
