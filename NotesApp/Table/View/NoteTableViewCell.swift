@@ -73,27 +73,18 @@ private extension NoteTableViewCell {
     func configureTitleLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.numberOfLines = 1
-        
+        self.containerView.addSubview(titleLabel)
         configureTitleLabelLayout()
     }
     func configureTitleLabelLayout() {
         self.containerView.addSubview(titleLabel)
-        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        if photoImageView.image == nil {
-            NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 4),
-                titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 4),
-                titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4),
-                titleLabel.heightAnchor.constraint(equalToConstant: 24)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: self.photoImageView.bottomAnchor, constant: 4),
-                titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 8),
-                titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -4)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: self.containerView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: self.titleLabel.font.lineHeight)
+        ])
     }
     
     // MARK: - configure descriptionLabel
