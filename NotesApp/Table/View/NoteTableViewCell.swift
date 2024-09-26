@@ -33,18 +33,17 @@ private extension NoteTableViewCell {
     func configureContainerView() {
         containerView.backgroundColor = UIColor.lightYellow
         containerView.layer.cornerRadius = 10
-        
         configureContainerViewLayout()
     }
     func configureContainerViewLayout() {
-        self.addSubview(containerView)
-        
+        self.contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-            containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
-            containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4),
-            containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4)
+            containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
         ])
     }
     
