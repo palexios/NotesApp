@@ -46,6 +46,28 @@ private extension NoteTableViewCell {
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
         ])
     }
+    // MARK: - configure photoImageView
+    func configurePhotoImageView() {
+        self.photoImageView.clipsToBounds = true
+        self.photoImageView.layer.cornerRadius = self.containerView.layer.cornerRadius
+        configurePhotoImageViewLayout()
+    }
+    func configurePhotoImageViewLayout() {
+        if let _ = self.photoImageView.image {
+            self.containerView.addSubview(photoImageView)
+            photoImageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                photoImageView.topAnchor.constraint(equalTo: self.containerView.topAnchor),
+                photoImageView.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+                photoImageView.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+                photoImageView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor),
+                photoImageView.heightAnchor.constraint(equalTo: self.containerView.heightAnchor, constant: -self.titleLabel.font.lineHeight - 8)
+            ])
+        } else {
+            self.photoImageView.removeFromSuperview()
+        }
+    }
     
     // MARK: - configure titleLabel
     func configureTitleLabel() {
