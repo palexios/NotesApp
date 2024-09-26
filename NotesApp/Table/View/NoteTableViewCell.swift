@@ -88,12 +88,11 @@ private extension NoteTableViewCell {
     // MARK: - configure descriptionLabel
     func configureDescriptionLabel() {
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont.systemFont(ofSize: 11)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
         configureDescriptionLabelLayout()
     }
     func configureDescriptionLabelLayout() {
         if self.photoImageView.image == nil {
-            let height = self.contentView.frame.height
             self.containerView.addSubview(descriptionLabel)
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
