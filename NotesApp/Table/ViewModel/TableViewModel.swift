@@ -40,10 +40,6 @@ final class TableViewModel: TableViewModelProtocol {
     func getSectionTitle(section: Int) -> String {
         return self.sections[section].title ?? ""
     }
-    @objc private func loadNotes() {
-        let notes = self.coreDataManager.fetchNotes().map {NoteViewModel(noteCoreDataModel: $0)}
-        self.sections = self.groupByDay(with: notes)
-    }
 
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadNotes), name: NSNotification.Name("FetchNotes"), object: nil)
@@ -90,5 +86,11 @@ final class TableViewModel: TableViewModelProtocol {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
         return dateFormatter.string(from: date)
+    }
+    // MARK: - @objc Methods
+    
+    @objc private func loadNotes() {
+        let notes = self.coreDataManager.fetchNotes().map {NoteViewModel(noteCoreDataModel: $0)}
+        self.sections = self.groupByDay(with: notes)
     }
 }
