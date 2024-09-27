@@ -1,37 +1,43 @@
     import UIKit
 
-    final class NoteTableViewCell: UITableViewCell {
-        // MARK: - GUI
-        private let containerView = UIView()
-        private let titleLabel = UILabel()
-        private let photoImageView = UIImageView()
-        private let descriptionLabel = UILabel()
-        
-        // MARK: - Init's
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-        }
-        required init?(coder: NSCoder) {
-            fatalError()
-        }
-        // MARK: - Methods
-        func setupCell(with cell: NoteViewModel, image: UIImage?) {
-            self.photoImageView.image = image
-            self.titleLabel.text = cell.title
-            self.descriptionLabel.text = cell.description
-            
-            configureContainerView()
-            configurePhotoImageView()
-            configureTitleLabel()
-            configureDescriptionLabel()
-        }
+final class NoteTableViewCell: UITableViewCell {
+    // MARK: - GUI
+    private let containerView = UIView()
+    private let titleLabel = UILabel()
+    private let photoImageView = UIImageView()
+    private let descriptionLabel = UILabel()
+    
+    // MARK: - Init's
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    // MARK: - Methods
+    func setupCell(with cell: NoteViewModel, image: UIImage?) {
+        self.photoImageView.image = image
+        self.titleLabel.text = cell.title
+        self.descriptionLabel.text = cell.description
+        
+        configureContainerView()
+        configurePhotoImageView()
+        configureTitleLabel()
+        configureDescriptionLabel()
+        
+        
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.frame = contentView.frame.inset(by: .init(top: 5, left: 5, bottom: 5, right: 5))
+    }
+}
 
 private extension NoteTableViewCell {
     // MARK: - configure containerView
     func configureContainerView() {
         containerView.backgroundColor = UIColor.lightYellow
-        containerView.layer.cornerRadius = 10
+        containerView.layer.cornerRadius = 20
         configureContainerViewLayout()
     }
     func configureContainerViewLayout() {
@@ -79,15 +85,16 @@ private extension NoteTableViewCell {
         self.containerView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: self.containerView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: self.titleLabel.font.lineHeight)
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: self.containerView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -16),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: self.titleLabel.font.lineHeight)
         ])
     }
     // MARK: - configure descriptionLabel
     func configureDescriptionLabel() {
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.textColor = .darkGray
         descriptionLabel.font = UIFont.systemFont(ofSize: 14)
         configureDescriptionLabelLayout()
     }
@@ -96,11 +103,11 @@ private extension NoteTableViewCell {
             self.containerView.addSubview(descriptionLabel)
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor),
-                descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+                descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 4),
+                descriptionLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor, constant: 16),
                 descriptionLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
-                descriptionLabel.heightAnchor.constraint(equalTo: self.containerView.heightAnchor, multiplier: 1, constant: -self.titleLabel.font.lineHeight),
-                descriptionLabel.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor)
+                descriptionLabel.heightAnchor.constraint(equalTo: self.containerView.heightAnchor, multiplier: 1, constant: -self.titleLabel.font.lineHeight - 28),
+                descriptionLabel.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -8)
             ])
         } else {
             descriptionLabel.removeFromSuperview()
