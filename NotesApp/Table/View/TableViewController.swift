@@ -13,7 +13,14 @@ final class TableViewController: UITableViewController {
         configureNavigationBar()
         configureToolBar()
     }
-    
+    @objc func buttonAction() {
+        self.tableView.reloadData()
+        print("Обновлено")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
     // MARK: - Init's
     init(viewModel: TableViewModelProtocol) {
         self.viewModel = viewModel
@@ -79,10 +86,10 @@ private extension TableViewController {
     // MARK: - toolBar
     func configureToolBar() {
         self.navigationController?.isToolbarHidden = false
-        
+        let updateButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(buttonAction))
         let addNoteBarButton = UIBarButtonItem(title: "Add Note", style: .done, target: self, action: #selector(addNoteBarButtonAction))
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
-        self.toolbarItems = [flexibleSpace, addNoteBarButton]
+        self.toolbarItems = [updateButton, flexibleSpace, addNoteBarButton]
     }
     @objc func addNoteBarButtonAction() {
         let viewModel = DetailViewModel(note: nil)
