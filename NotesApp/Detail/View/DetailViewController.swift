@@ -3,10 +3,8 @@ import PhotosUI
 
 final class DetailViewController: UIViewController {
     // MARK: - GUI
-    var photoImageViewHeightConstraint: NSLayoutConstraint!
     private let photoImageView = UIImageView()
     private let textView = UITextView()
-    private var suggestedName: String?
     private var saveBarButton: UIBarButtonItem!
     private lazy var phpickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
@@ -23,6 +21,7 @@ final class DetailViewController: UIViewController {
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
     private let coreDataManager = CoreDataManager.shared
+    private var suggestedName: String?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
