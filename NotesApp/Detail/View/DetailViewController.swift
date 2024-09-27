@@ -84,7 +84,8 @@ private extension DetailViewController {
     @objc func saveBarButtonAction() {
         let text = self.textView.text ?? ""
         let (title, description) = self.viewModel.getTitleAndDescription(from: text)
-        let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: nil, date: Date()))
+        let imageLink = self.viewModel.getUrlToImage()
+        let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: imageLink, date: Date()))
         let imageData = self.photoImageView.image?.jpegData(compressionQuality: 1)
         self.viewModel.setSuggestedName(suggestedName)
         self.viewModel.saveNote(newNote: newNote, data: imageData, dataName: self.suggestedName)
