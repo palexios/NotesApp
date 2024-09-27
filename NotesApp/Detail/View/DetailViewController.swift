@@ -89,6 +89,7 @@ private extension DetailViewController {
         let imageData = self.photoImageView.image?.jpegData(compressionQuality: 1)
         self.viewModel.setSuggestedName(suggestedName)
         self.viewModel.saveNote(newNote: newNote, data: imageData, dataName: self.suggestedName)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - toolBar
@@ -106,6 +107,7 @@ private extension DetailViewController {
     }
     @objc private func trashBarButtonAction() {
         self.viewModel.deleteNote()
+        self.navigationController?.popViewController(animated: true)
     }
     // MARK: - photoImageView
     func configurePhotoImageView() {
