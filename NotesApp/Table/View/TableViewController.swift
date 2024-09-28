@@ -13,10 +13,6 @@ final class TableViewController: UITableViewController {
         configureNavigationBar()
         configureToolBar()
     }
-    @objc func buttonAction() {
-        self.tableView.reloadData()
-        print("Обновлено")
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.tableView.reloadData()
@@ -63,6 +59,18 @@ final class TableViewController: UITableViewController {
         let detailViewController = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
+    
+    // MARK: - @objc Methods
+    @objc func buttonAction() {
+        self.tableView.reloadData()
+        print("Обновлено")
+    }
+    @objc func addNoteBarButtonAction() {
+        let viewModel = DetailViewModel(note: nil)
+        let detailViewController = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+        
+    }
 }
 private extension TableViewController {
     // MARK: - tableView
@@ -90,11 +98,5 @@ private extension TableViewController {
         let addNoteBarButton = UIBarButtonItem(title: "Add Note", style: .done, target: self, action: #selector(addNoteBarButtonAction))
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
         self.toolbarItems = [updateButton, flexibleSpace, addNoteBarButton]
-    }
-    @objc func addNoteBarButtonAction() {
-        let viewModel = DetailViewModel(note: nil)
-        let detailViewController = DetailViewController(viewModel: viewModel)
-        self.navigationController?.pushViewController(detailViewController, animated: true)
-        
     }
 }
