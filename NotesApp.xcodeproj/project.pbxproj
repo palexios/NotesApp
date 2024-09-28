@@ -82,7 +82,7 @@
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
 				FA5BE8032C9EBC0000EDE66B /* CoreData */,
-				FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */,
+				FA8E171D2CA88C9100D62711 /* FileManager */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -175,6 +175,14 @@
 				FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FA8E171D2CA88C9100D62711 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */,
+			);
+			path = FileManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
