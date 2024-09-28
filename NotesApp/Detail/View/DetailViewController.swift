@@ -43,6 +43,28 @@ final class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    // MARK: - @objc Methods
+    @objc func gestureRecognizerAction() {
+        self.textView.resignFirstResponder()
+    }
+    @objc func saveBarButtonAction() {
+        let text = self.textView.text ?? ""
+        let (title, description) = self.viewModel.getTitleAndDescription(from: text)
+        let imageLink = self.viewModel.getUrlToImage()
+        let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: imageLink, date: Date()))
+        let imageData = self.photoImageView.image?.jpegData(compressionQuality: 1)
+        self.viewModel.setSuggestedName(suggestedName)
+        self.viewModel.saveNote(newNote: newNote, data: imageData, dataName: self.suggestedName)
+        self.navigationController?.popViewController(animated: true)
+    }
+    @objc private func addPhotoBarButtonAction() {
+        self.showPHPickerViewController()
+    }
+    @objc private func trashBarButtonAction() {
+        self.viewModel.deleteNote()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -80,16 +102,6 @@ private extension DetailViewController {
         self.navigationItem.rightBarButtonItem = saveBarButton
         self.saveBarButton.isHidden = true
     }
-    @objc func saveBarButtonAction() {
-        let text = self.textView.text ?? ""
-        let (title, description) = self.viewModel.getTitleAndDescription(from: text)
-        let imageLink = self.viewModel.getUrlToImage()
-        let newNote = NoteViewModel(noteModel: NoteModel(title: title, description: description, urlToImage: imageLink, date: Date()))
-        let imageData = self.photoImageView.image?.jpegData(compressionQuality: 1)
-        self.viewModel.setSuggestedName(suggestedName)
-        self.viewModel.saveNote(newNote: newNote, data: imageData, dataName: self.suggestedName)
-        self.navigationController?.popViewController(animated: true)
-    }
     
     // MARK: - toolBar
     func configureToolBar() {
@@ -100,13 +112,6 @@ private extension DetailViewController {
             let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
             self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
         }
-    }
-    @objc private func addPhotoBarButtonAction() {
-        self.showPHPickerViewController()
-    }
-    @objc private func trashBarButtonAction() {
-        self.viewModel.deleteNote()
-        self.navigationController?.popViewController(animated: true)
     }
     // MARK: - photoImageView
     func configurePhotoImageView() {
@@ -172,8 +177,5 @@ private extension DetailViewController {
     func configureGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerAction))
         self.view.addGestureRecognizer(recognizer)
-    }
-    @objc func gestureRecognizerAction() {
-        self.textView.resignFirstResponder()
     }
 }
