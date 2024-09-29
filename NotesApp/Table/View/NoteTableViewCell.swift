@@ -24,8 +24,6 @@ final class NoteTableViewCell: UITableViewCell {
         configurePhotoImageView()
         configureTitleLabel()
         configureDescriptionLabel()
-        
-        
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -33,8 +31,8 @@ final class NoteTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Configure containerView
 private extension NoteTableViewCell {
-    // MARK: - configure containerView
     func configureContainerView() {
         containerView.backgroundColor = UIColor.lightYellow
         containerView.layer.cornerRadius = 20
@@ -51,7 +49,9 @@ private extension NoteTableViewCell {
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
         ])
     }
-    // MARK: - configure photoImageView
+}
+// MARK: - Configure photoImageView
+private extension NoteTableViewCell {
     func configurePhotoImageView() {
         self.photoImageView.clipsToBounds = true
         self.photoImageView.layer.cornerRadius = self.containerView.layer.cornerRadius
@@ -73,8 +73,10 @@ private extension NoteTableViewCell {
             self.photoImageView.removeFromSuperview()
         }
     }
-    
-    // MARK: - configure titleLabel
+}
+
+// MARK: - Configure titleLabel
+private extension NoteTableViewCell {
     func configureTitleLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.numberOfLines = 1
@@ -91,7 +93,10 @@ private extension NoteTableViewCell {
             titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: self.titleLabel.font.lineHeight)
         ])
     }
-    // MARK: - configure descriptionLabel
+}
+
+// MARK: - Configure descriptionLabel
+private extension NoteTableViewCell {
     func configureDescriptionLabel() {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .darkGray
@@ -112,6 +117,5 @@ private extension NoteTableViewCell {
         } else {
             descriptionLabel.removeFromSuperview()
         }
-        
     }
 }
