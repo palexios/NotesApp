@@ -5,6 +5,7 @@ final class DetailViewController: UIViewController {
     // MARK: - GUI
     private let photoImageView = UIImageView()
     private let textView = UITextView()
+    
     private var saveBarButton: UIBarButtonItem!
     private var addColorBarButton: UIBarButtonItem!
     
@@ -23,6 +24,7 @@ final class DetailViewController: UIViewController {
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
     private let coreDataManager = CoreDataManager.shared
+    
     private var suggestedName: String?
     
     // MARK: - Life Cycle
@@ -108,11 +110,12 @@ private extension DetailViewController {
     // MARK: - toolBar
     func configureToolBar() {
         let addPhotoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPhotoBarButtonAction))
+        configureAddColorBarButton()
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
         self.setToolbarItems([flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
         if self.viewModel.isThereNoteModel {
             let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
-            self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
+            self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, addColorBarButton, flexibleSpace], animated: true)
         }
     }
     // MARK: - photoImageView
