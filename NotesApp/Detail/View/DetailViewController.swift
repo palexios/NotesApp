@@ -6,6 +6,8 @@ final class DetailViewController: UIViewController {
     private let photoImageView = UIImageView()
     private let textView = UITextView()
     private var saveBarButton: UIBarButtonItem!
+    private var addColorBarButton: UIBarButtonItem!
+    
     private lazy var phpickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
