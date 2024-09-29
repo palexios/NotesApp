@@ -72,26 +72,32 @@ final class TableViewController: UITableViewController {
         
     }
 }
+// MARK: - Configure tableView
 private extension TableViewController {
-    // MARK: - tableView
     func configureTableView() {
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: "NoteTableViewCell")
         self.tableView.rowHeight = 112
         self.tableView.separatorStyle = .none
     }
-    // MARK: - viewModel
+}
+    // MARK: - Configure viewModel
+private extension TableViewController {
     func configureViewModel() {
         self.viewModel.reloadTable = {[weak self] in
             self?.tableView.reloadData()
         }
     }
-    // MARK: - navigationBar
+}
+    // MARK: - Configure navigationBar
+private extension TableViewController {
     func configureNavigationBar() {
         self.title = "Notes"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.isNavigationBarHidden = false
     }
-    // MARK: - toolBar
+}
+    // MARK: - Configure toolBar
+private extension TableViewController {
     func configureToolBar() {
         self.navigationController?.isToolbarHidden = false
         let updateButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(buttonAction))
