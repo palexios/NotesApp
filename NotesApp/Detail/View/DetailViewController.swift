@@ -181,3 +181,47 @@ private extension DetailViewController {
         self.view.addGestureRecognizer(recognizer)
     }
 }
+// MARK: - Configure addColorBarButton
+private extension DetailViewController {
+    func configureAddColorBarButton() {
+        let actions = createActions()
+        
+        let button = UIBarButtonItem(title: "Add Color", style: .plain, target: self, action: #selector(addColorBarButtonAction))
+        button.menu = UIMenu(children: actions)
+        
+        self.addColorBarButton = button
+    }
+    func createActions() -> [UIAction] {
+        let colors = UIColor.additionalColors
+        var actions: [UIAction] = []
+        for i in colors {
+            let colorView = createColorView(with: i)
+            let colorImage = createColorImage(from: colorView)
+            let action = UIAction(title: i.accessibilityName,image: colorImage) { action in
+                print("выбран \(action.title)")
+            }
+            actions.append(action)
+        }
+        
+        return actions
+    }
+    func createColorView(with color: UIColor) -> UIView {
+        let colorView = UIView(frame: .init(x: 0, y: 0, width: 26, height: 26))
+        colorView.layer.cornerRadius = colorView.frame.width / 2
+        colorView.backgroundColor = color
+        colorView.layer.borderColor = UIColor.darkGray.cgColor
+        colorView.layer.borderWidth = 5
+        return colorView
+        
+    }
+    func createColorImage(from colorView: UIView) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: colorView.bounds.size)
+        let image = renderer.image { ctx in
+            colorView.layer.render(in: ctx.cgContext)
+        }
+        return image
+    }
+    @objc func addColorBarButtonAction() {
+        
+    }
+}
