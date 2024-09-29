@@ -99,15 +99,18 @@ extension DetailViewController: PHPickerViewControllerDelegate {
         
     }
 }
+
+// MARK: - Configure navigationBar
 private extension DetailViewController {
-    // MARK: - navigationBar
     func configureNavigationBar() {
         saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBarButtonAction))
         self.navigationItem.rightBarButtonItem = saveBarButton
         self.saveBarButton.isHidden = true
     }
-    
-    // MARK: - toolBar
+}
+
+// MARK: - Configure toolBar
+private extension DetailViewController {
     func configureToolBar() {
         let addPhotoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPhotoBarButtonAction))
         configureAddColorBarButton()
@@ -118,7 +121,10 @@ private extension DetailViewController {
             self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, addColorBarButton, flexibleSpace], animated: true)
         }
     }
-    // MARK: - photoImageView
+}
+
+// MARK: - Configure photoImageView
+private extension DetailViewController {
     func configurePhotoImageView() {
         if let url = self.viewModel.getUrlToImage() {
             if let data = self.viewModel.getImageData(from: url) {
@@ -145,13 +151,17 @@ private extension DetailViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
-    // MARK: - phpickerViewController
+}
+
+// MARK: - Configure phpickerViewController
+private extension DetailViewController {
     func showPHPickerViewController() {
         self.present(phpickerViewController, animated: true)
     }
-    
-    // MARK: - textView
+}
+
+// MARK: - Configure textView
+private extension DetailViewController {
     func configureTextView() {
         self.textView.delegate = self
         self.textView.font = UIFont.systemFont(ofSize: 28)
@@ -177,13 +187,16 @@ private extension DetailViewController {
             textView.bottomAnchor.constraint(equalTo: self.view.keyboardLayoutGuide.topAnchor, constant: -12)
         ])
     }
-    
-    // MARK: - gestureRecognizer
+}
+
+// MARK: - Configure gestureRecognizer
+private extension DetailViewController {
     func configureGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerAction))
         self.view.addGestureRecognizer(recognizer)
     }
 }
+
 // MARK: - Configure addColorBarButton
 private extension DetailViewController {
     func configureAddColorBarButton() {
