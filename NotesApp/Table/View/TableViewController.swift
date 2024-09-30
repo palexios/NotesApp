@@ -61,10 +61,6 @@ final class TableViewController: UITableViewController {
     }
     
     // MARK: - @objc Methods
-    @objc func buttonAction() {
-        self.tableView.reloadData()
-        print("Обновлено")
-    }
     @objc func addNoteBarButtonAction() {
         let viewModel = DetailViewModel(note: nil)
         let detailViewController = DetailViewController(viewModel: viewModel)
@@ -100,9 +96,8 @@ private extension TableViewController {
 private extension TableViewController {
     func configureToolBar() {
         self.navigationController?.isToolbarHidden = false
-        let updateButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(buttonAction))
         let addNoteBarButton = UIBarButtonItem(title: "Add Note", style: .done, target: self, action: #selector(addNoteBarButtonAction))
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
-        self.toolbarItems = [updateButton, flexibleSpace, addNoteBarButton]
+        self.toolbarItems = [flexibleSpace, addNoteBarButton]
     }
 }
