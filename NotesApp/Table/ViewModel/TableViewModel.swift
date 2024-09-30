@@ -44,7 +44,7 @@ final class TableViewModel: TableViewModelProtocol {
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadNotes), name: NSNotification.Name("FetchNotes"), object: nil)
     }
-    func groupByDay(with notes: [NoteViewModel]) -> [SectionViewModel] {
+    private func groupByDay(with notes: [NoteViewModel]) -> [SectionViewModel] {
         let calendar = Calendar.current
         let notesCopy = notes.map { NoteViewModel(noteModel: NoteModel(title: $0.title, description: $0.description, urlToImage: $0.urlToImage, date: $0.date))}
         //remove time
