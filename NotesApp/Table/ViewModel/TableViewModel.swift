@@ -84,7 +84,7 @@ final class TableViewModel: TableViewModelProtocol {
     }
     private func convertDateToString(with date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.dateFormat = "dd MMMM yyyy"
         return dateFormatter.string(from: date)
     }
     // MARK: - @objc Methods
