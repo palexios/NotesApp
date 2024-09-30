@@ -118,7 +118,7 @@ private extension DetailViewController {
         self.setToolbarItems([flexibleSpace, addPhotoBarButton, flexibleSpace], animated: true)
         if self.viewModel.isThereNoteModel {
             let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonAction))
-            self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton, addColorBarButton, flexibleSpace], animated: true)
+            self.setToolbarItems([trashButton, flexibleSpace, addPhotoBarButton,flexibleSpace ,addColorBarButton], animated: true)
         }
     }
 }
