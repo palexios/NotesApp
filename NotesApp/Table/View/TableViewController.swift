@@ -3,6 +3,7 @@ import UIKit
 final class TableViewController: UITableViewController {
     // MARK: - Properties
     var viewModel: TableViewModelProtocol
+    weak var coordinator: MainCoordinator?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -56,8 +57,7 @@ final class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let note = self.viewModel.getNote(indexPath: indexPath)
         let viewModel = DetailViewModel(note: note)
-        let detailViewController = DetailViewController(viewModel: viewModel)
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        self.coordinator?.detailNote(with: viewModel)
     }
     
     // MARK: - @objc Methods
@@ -65,7 +65,6 @@ final class TableViewController: UITableViewController {
         let viewModel = DetailViewModel(note: nil)
         let detailViewController = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(detailViewController, animated: true)
-        
     }
 }
 // MARK: - Configure tableView
