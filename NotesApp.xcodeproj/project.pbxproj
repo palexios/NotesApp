@@ -83,6 +83,7 @@
 				FA5BE7FB2C9EB3E400EDE66B /* Table */,
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
+				FA5BE8032C9EBC0000EDE66B /* CoreData */,
 				FAF0D8542CAC862C0059A654 /* Managers */,
 			);
 			path = NotesApp;
@@ -197,7 +198,6 @@
 		FAF0D8542CAC862C0059A654 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				FA5BE8032C9EBC0000EDE66B /* CoreData */,
 				FA8E171D2CA88C9100D62711 /* FileManager */,
 				FAF0D8532CAC861F0059A654 /* Coordinator */,
 			);
@@ -438,6 +438,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,6 +469,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
