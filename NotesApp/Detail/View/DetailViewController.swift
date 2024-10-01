@@ -23,7 +23,9 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel: DetailViewModelProtocol
+    
     private let coreDataManager = CoreDataManager.shared
+    weak var coordinator: MainCoordinator?
     
     private var suggestedName: String?
     
@@ -202,8 +204,8 @@ private extension DetailViewController {
     func configureAddColorBarButton() {
         let actions = createActions()
         
-        let button = UIBarButtonItem(title: "Add Color", style: .plain, target: self, action: #selector(addColorBarButtonAction))
-        button.menu = UIMenu(children: actions)
+        let button = UIBarButtonItem(title: "Add Color", style: .plain, target: self, action: nil)
+        button.menu = UIMenu(title: "Color", children: actions)
         
         self.addColorBarButton = button
     }
