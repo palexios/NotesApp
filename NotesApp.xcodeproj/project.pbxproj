@@ -83,9 +83,7 @@
 				FA5BE7FB2C9EB3E400EDE66B /* Table */,
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
-				FA5BE8032C9EBC0000EDE66B /* CoreData */,
-				FA8E171D2CA88C9100D62711 /* FileManager */,
-				FAF0D8512CAC7CEA0059A654 /* Coordinator.swift */,
+				FAF0D8542CAC862C0059A654 /* Managers */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -186,6 +184,24 @@
 				FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */,
 			);
 			path = FileManager;
+			sourceTree = "<group>";
+		};
+		FAF0D8532CAC861F0059A654 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FAF0D8512CAC7CEA0059A654 /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		FAF0D8542CAC862C0059A654 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA5BE8032C9EBC0000EDE66B /* CoreData */,
+				FA8E171D2CA88C9100D62711 /* FileManager */,
+				FAF0D8532CAC861F0059A654 /* Coordinator */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
