@@ -25,7 +25,6 @@ final class DetailViewController: UIViewController {
     private let viewModel: DetailViewModelProtocol
     
     private let coreDataManager = CoreDataManager.shared
-    weak var coordinator: MainCoordinator?
     
     private var suggestedName: String?
     
