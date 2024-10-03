@@ -3,6 +3,7 @@ import CoreData
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
+    
     // MARK: - Properties
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
@@ -10,6 +11,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Methods
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
         let navigationController = UINavigationController()
         appCoordinator = AppCoordinator(navigationController: navigationController)
         appCoordinator?.start()
