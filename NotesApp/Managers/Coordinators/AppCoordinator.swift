@@ -11,7 +11,12 @@ final class AppCoordinator: Coordinator {
     
     // MARK: - Methods
     func start() {
-        showMain()
+        showLogin()
+    }
+    
+    func showLogin() {
+        let loginViewController = LoginViewController()
+        self.navigationController.pushViewController(loginViewController, animated: true)
     }
     
     func showMain() {
