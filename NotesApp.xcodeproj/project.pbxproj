@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA15860D2CB843DC00CF3115 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15860C2CB843DC00CF3115 /* LoginViewController.swift */; };
+		FA15860F2CB843F800CF3115 /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15860E2CB843F800CF3115 /* LoginViewBuilder.swift */; };
+		FA1586122CB84C7900CF3115 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1586112CB84C7900CF3115 /* LoginTextField.swift */; };
 		FA5BE7D12C9DDC5600EDE66B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE7D02C9DDC5600EDE66B /* AppDelegate.swift */; };
 		FA5BE7DA2C9DDC5700EDE66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5BE7D92C9DDC5700EDE66B /* Assets.xcassets */; };
 		FA5BE7DD2C9DDC5700EDE66B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FA5BE7DC2C9DDC5700EDE66B /* Base */; };
@@ -23,11 +26,15 @@
 		FA5BE8062C9EBC1300EDE66B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8042C9EBC1300EDE66B /* DataModel.xcdatamodeld */; };
 		FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */; };
 		FA866E312CA2B18F004DC78E /* FileManagerPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */; };
+		FAF4BD5C2CBA790F00BA39BA /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4BD5B2CBA790F00BA39BA /* LoginButton.swift */; };
 		FAF926E52CAF0C7400AAF4C5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF926E42CAF0C7400AAF4C5 /* Coordinator.swift */; };
 		FAF926E92CAF0CA800AAF4C5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF926E82CAF0CA800AAF4C5 /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA15860C2CB843DC00CF3115 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA15860E2CB843F800CF3115 /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
+		FA1586112CB84C7900CF3115 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		FA5BE7CD2C9DDC5600EDE66B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5BE7D02C9DDC5600EDE66B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5BE7D92C9DDC5700EDE66B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +53,7 @@
 		FA5BE8052C9EBC1300EDE66B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FA5BE8072C9EBCA200EDE66B /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FA866E302CA2B18F004DC78E /* FileManagerPersistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerPersistent.swift; sourceTree = "<group>"; };
+		FAF4BD5B2CBA790F00BA39BA /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		FAF926E42CAF0C7400AAF4C5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		FAF926E82CAF0CA800AAF4C5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +69,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA15860B2CB843C200CF3115 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA1586102CB8449500CF3115 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FA1586102CB8449500CF3115 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA15860E2CB843F800CF3115 /* LoginViewBuilder.swift */,
+				FAF4BD5B2CBA790F00BA39BA /* LoginButton.swift */,
+				FA1586112CB84C7900CF3115 /* LoginTextField.swift */,
+				FA15860C2CB843DC00CF3115 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA5BE7C42C9DDC5600EDE66B = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +109,7 @@
 			children = (
 				FA5BE7D02C9DDC5600EDE66B /* AppDelegate.swift */,
 				FA5BE7FD2C9EB3F900EDE66B /* Detail */,
+				FA15860B2CB843C200CF3115 /* Login */,
 				FA5BE7FB2C9EB3E400EDE66B /* Table */,
 				FA5BE7E62C9DDE7F00EDE66B /* Resources */,
 				FA5BE7FA2C9EB3C100EDE66B /* Extensions */,
@@ -287,8 +315,10 @@
 			files = (
 				FA5BE7F92C9EAFED00EDE66B /* DetailViewController.swift in Sources */,
 				FA5BE7F52C9E03FA00EDE66B /* UIColor+Ex.swift in Sources */,
+				FA15860F2CB843F800CF3115 /* LoginViewBuilder.swift in Sources */,
 				FAF926E52CAF0C7400AAF4C5 /* Coordinator.swift in Sources */,
 				FA5BE7F32C9DE8CC00EDE66B /* NoteViewModel.swift in Sources */,
+				FAF4BD5C2CBA790F00BA39BA /* LoginButton.swift in Sources */,
 				FAF926E92CAF0CA800AAF4C5 /* AppCoordinator.swift in Sources */,
 				FA866E312CA2B18F004DC78E /* FileManagerPersistent.swift in Sources */,
 				FA5BE8082C9EBCA200EDE66B /* Note+CoreDataProperties.swift in Sources */,
@@ -298,9 +328,11 @@
 				FA5BE7E92C9DE2BC00EDE66B /* TableViewModel.swift in Sources */,
 				FA5BE7D12C9DDC5600EDE66B /* AppDelegate.swift in Sources */,
 				FA5BE7EB2C9DE35D00EDE66B /* SectionViewModel.swift in Sources */,
+				FA15860D2CB843DC00CF3115 /* LoginViewController.swift in Sources */,
 				FA5BE8062C9EBC1300EDE66B /* DataModel.xcdatamodeld in Sources */,
 				FA5BE7E52C9DDCE600EDE66B /* TableViewController.swift in Sources */,
 				FA5BE7F12C9DE7D300EDE66B /* NoteTableViewCell.swift in Sources */,
+				FA1586122CB84C7900CF3115 /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
