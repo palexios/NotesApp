@@ -3,8 +3,8 @@ import UIKit
 // MARK: - LoginViewController
 final class LoginViewController: UIViewController {
     // MARK: - Properties
-    lazy var builder: ViewBuilder = {
-        let builder = ViewBuilder(view: self.view)
+    lazy var builder: LoginViewBuilder = {
+        let builder = LoginViewBuilder(viewController: self)
         
         return builder
     }()
@@ -17,7 +17,9 @@ final class LoginViewController: UIViewController {
         builder.setBackgroundGradient()
         builder.setContentStack()
         builder.setTextFieldViews()
-        builder.setLoginButton()
         builder.setLogoImageView()
+        builder.setButtonsStackView()
+        builder.setLoginButton()
+        builder.setSignUpButton()
     }
 }
