@@ -1,55 +1,93 @@
 import UIKit
 
+// MARK: - TextFieldType
 enum TextFieldType {
     case username
     case password
 }
 
 // MARK: - ViewBuilder
-final class ViewBuilder {
+final class LoginViewBuilder {
     // MARK: - GUI
-    lazy var logoImageView: UIImageView = {
+    lazy var usernameTextField: LoginTextField = {
+        let textField = LoginTextField(placeholder: "Email")
+        textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = .none
+        
+        textField.delegate = self.viewController
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            textField.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        return textField
+    }()
+    
+    lazy var passwordTextField: LoginTextField = {
+        let textField = LoginTextField(placeholder: "Password")
+        textField.isSecureTextEntry = true
+        
+        textField.delegate = self.viewController
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            textField.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        return textField
+    }()
+    
+    lazy var loginButton: LoginButton = {
+        let button = LoginButton()
+        
+        return button
+    }()
+    
+    lazy var signUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Don't have an account?", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .light)
+        button.setTitleColor(.systemGray4, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    // MARK: - Private GUI
+    private lazy var logoImageView: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage.notepad
         logo.contentMode = .scaleAspectFit
         
         return logo
     }()
-    lazy var usernameTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "Username")
+    private lazy var buttonsStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.spacing = 5
         
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        return textField
-    }()
-    lazy var passwordTextField: LoginTextField = {
-        let textField = LoginTextField(placeholder: "Password")
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        return textField
+        return stack
     }()
     private lazy var contentStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .fill
         stack.spacing = 40
-        
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
     }()
+
     // MARK: - Properties
     private let view: UIView
+    private let viewController: LoginViewController
     
     // MARK: - Init
-    init(view: UIView) {
-        self.view = view
+    init(viewController: LoginViewController) {
+        self.view = viewController.view
+        self.viewController = viewController
     }
     
     // MARK: - Methods
@@ -74,23 +112,47 @@ final class ViewBuilder {
         self.contentStack.addArrangedSubview(passwordFieldView)
     }
     func setLoginButton() {
-        let loginButton = LoginButton()
-        self.contentStack.addArrangedSubview(loginButton)
+        self.buttonsStackView.addArrangedSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    func setSignUpButton() {
+        lazy var containerView: UIView = {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            
+            return view
+        }()
+        containerView.addSubview(signUpButton)
+        NSLayoutConstraint.activate([
+            signUpButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            signUpButton.topAnchor.constraint(equalTo: containerView.topAnchor),
+            signUpButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+        self.buttonsStackView.addArrangedSubview(containerView)
+    }
     func setLogoImageView() {
         self.view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            logoImageView.bottomAnchor.constraint(equalTo: contentStack.topAnchor, constant: -50),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100),
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.bottomAnchor.constraint(equalTo: contentStack.topAnchor, constant: -self.view.frame.height / 8),
+            logoImageView.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.275),
+            logoImageView.heightAnchor.constraint(equalToConstant: self.view.frame.width * 0.275),
             logoImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
     }
+    func setButtonsStackView() {
+        self.view.addSubview(buttonsStackView)
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonsStackView.leadingAnchor.constraint(equalTo: contentStack.leadingAnchor),
+            buttonsStackView.trailingAnchor.constraint(equalTo: contentStack.trailingAnchor),
+            buttonsStackView.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: self.view.frame.height / 10),
+        ])
+    }
+    
     // MARK: - Private Methods
     private func getBackroundGradient() -> CAGradientLayer {
         let gradientLayer = CAGradientLayer()
